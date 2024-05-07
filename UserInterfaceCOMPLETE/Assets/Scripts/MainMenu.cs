@@ -49,7 +49,5 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
         Debug.Log("Quit the application.");
     }
-    
-    // Start is called before the first frame update
 
 }
