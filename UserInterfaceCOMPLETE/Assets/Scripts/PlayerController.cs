@@ -19,7 +19,16 @@ public class PlayerController : MonoBehaviour
     //keep track of if the player is on the ground
     bool isGrounded = false;
 
+    private AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+    
+    
     // Start is called before the first frame update
+    
     void Start()
     {
         // Get references to the components attached to the current GameObject
@@ -39,7 +48,12 @@ public class PlayerController : MonoBehaviour
     {
         //if player is on the ground, jump
         if (isGrounded)
+        {
             Jump();
+            audioManager.PlaySFX(audioManager.jump);
+        }
+
+        
     }
 
     private void Jump()

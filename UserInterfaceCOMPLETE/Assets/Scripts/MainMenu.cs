@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,13 @@ public class MainMenu : MonoBehaviour
 {
     public static bool isPaused = false;
     public GameObject pauseMenu;
+
+    private AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     public void OnPause()
     {
@@ -21,12 +29,14 @@ public class MainMenu : MonoBehaviour
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
             isPaused = false;
+            audioManager.PlayAudio(audioManager.background);
         }
         else
         {
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
             isPaused = true;
+            audioManager.PauseAudio(audioManager.background);
         }
     }
     
